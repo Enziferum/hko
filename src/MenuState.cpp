@@ -23,8 +23,8 @@ source distribution.
 
 #include "hko/States.h"
 #include "hko/MenuState.h"
-#include "hko/gui/Label.h"
-#include "hko/gui/ScrollBar.h"
+#include "framework/gui/Label.h"
+#include "framework/gui/ScrollBar.h"
 
 namespace hko{
 

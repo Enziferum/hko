@@ -21,8 +21,13 @@ source distribution.
 
 #pragma once
 
-#include "ecs/Component.h"
+#include <SFML/Graphics.hpp>
+#include "framework/ecs/Component.h"
 
 namespace hko{
-
+    class Drawable:public sf::Drawable{
+    public:
+    protected:
+        void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
+    };
 }

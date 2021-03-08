@@ -19,26 +19,45 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#pragma once
-
-#include "Entity.h"
+#include "framework/gui/Gui.h"
 
 namespace hko{
-    class System{
-    public:
-        System();
-        virtual ~System() = 0;
+    Gui::Gui() {
+    }
 
-        virtual void process(float dt) = 0;
+    Gui::~Gui() {
+    }
 
-    protected:
-        virtual void on_addEntity(Entity entity);
+    void Gui::pack(GuiNode::Ptr m_node) {
+        if(m_node == nullptr)
+            return;
 
-        template<typename T>
-        void requireComponent();
-    };
+        m_nodes.push_back(m_node);
+    }
 
-    class SystemManager{
+    void Gui::handleEvents(const sf::Event &event) {
+        if(event.type == sf::Event::MouseButtonPressed){
+            sf::Vector2f mouse_pos(event.mouseButton.x, event.mouseButton.y);
+            for(auto& it: m_nodes)
+                if(it->intersects(mouse_pos)){
+                    //todo smth
+                }
+        }
+    }
 
-    };
+    void Gui::update(float dt) {
+        for(auto& it: m_nodes)
+            it->update(dt);
+    }
+
+    void Gui::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+        for(auto& it: m_nodes)
+            target.draw(*it);
+    }
+
+    void Gui::resize(const sf::Vector2u& new_size) {
+
+    }
+
+
 }

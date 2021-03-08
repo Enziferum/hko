@@ -19,17 +19,39 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#include "hko/IState.h"
+
+#pragma once
+
+#include <SFML/Graphics.hpp>
+
+#include "Entity.h"
+#include "Component.h"
+#include "System.h"
 
 namespace hko{
+    class Scene: public sf::Drawable {
+    public:
+        Scene();
+        Scene(const Scene&) = delete;
+        Scene(const Scene&&) = delete;
+        Scene& operator=(const Scene&) = delete;
+        Scene& operator=(const Scene&&) = delete;
+        ~Scene();
 
-    IState::IState(IStateMachine& machine):
-        m_machine(machine),
-        m_window(machine.getWindow()) {
 
-    }
+        Entity createEntity();
 
-    IState::~IState() {
+    private:
+        void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
+    private:
+        //managers
+        ComponentManager m_componentManager;
+        EntityManager m_entityManager;
+        SystemManager m_systemManager;
+    };
 
-    }
+
+
+
+
 }

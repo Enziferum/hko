@@ -19,17 +19,15 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#pragma once
-
 #include "framework/ecs/System.h"
 
 namespace hko{
-    class SpriteSystem: public System{
-    public:
-        explicit SpriteSystem();
+    System::System() {}
+    System::~System() {}
 
-        void process(float dt) override;
-    private:
-        void on_addEntity(Entity) override;
-    };
+    std::vector<Entity> System::getEntities() {
+        return std::vector<Entity>();
+    }
+
+
 }

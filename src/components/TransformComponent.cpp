@@ -19,3 +19,13 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
+#include <hko/TransformComponent.h>
+
+hko::Transform::Transform() {
+
+}
+
+void hko::Transform::setPosition(const sf::Vector2f& pos) {
+
+}
+

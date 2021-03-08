@@ -20,11 +20,11 @@ source distribution.
 *********************************************************************/
 #pragma once
 
-#include "IState.h"
+#include "framework/IState.h"
 #include "ResourceManager.h"
 
-#include "hko/gui/Button.h"
-#include "hko/gui/Gui.h"
+#include "framework/gui/Button.h"
+#include "framework/gui/Gui.h"
 #include "hko/Configuration.h"
 
 namespace hko{

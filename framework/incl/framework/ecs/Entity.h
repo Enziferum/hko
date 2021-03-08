@@ -19,45 +19,48 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#include "hko/gui/Gui.h"
+
+#pragma once
+
+#include "Component.h"
 
 namespace hko{
-    Gui::Gui() {
-    }
+    class EntityManager;
 
-    Gui::~Gui() {
-    }
-
-    void Gui::pack(GuiNode::Ptr m_node) {
-        if(m_node == nullptr)
-            return;
-
-        m_nodes.push_back(m_node);
-    }
-
-    void Gui::handleEvents(const sf::Event &event) {
-        if(event.type == sf::Event::MouseButtonPressed){
-            sf::Vector2f mouse_pos(event.mouseButton.x, event.mouseButton.y);
-            for(auto& it: m_nodes)
-                if(it->intersects(mouse_pos)){
-                    //todo smth
-                }
-        }
-    }
-
-    void Gui::update(float dt) {
-        for(auto& it: m_nodes)
-            it->update(dt);
-    }
-
-    void Gui::draw(sf::RenderTarget &target, sf::RenderStates states) const {
-        for(auto& it: m_nodes)
-            target.draw(*it);
-    }
-
-    void Gui::resize(const sf::Vector2u& new_size) {
-
-    }
+    class Entity final{
+    public:
+        Entity();
+        //Entity(const Entity&);
+        ~Entity();
 
 
+        template<typename T>
+        T& addComponent(const T&);
+
+
+        template<typename T, typename ...Args>
+        T& addComponent(Args&& ...);
+
+
+        template<typename T>
+        bool hasComponent() const;
+
+        template<typename T>
+        T& get_component();
+
+        template<typename T>
+        const T& get_component() const;
+    private:
+        EntityManager* m_manager;
+    };
+
+
+
+    class EntityManager{
+    public:
+
+    };
+
+    #include "Entity.inl"
+    #include "EntityManager.inl"
 }

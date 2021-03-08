@@ -20,7 +20,7 @@ source distribution.
 *********************************************************************/
 
 #include "hko/Building.h"
-#include "hko/Utility.h"
+#include "framework/Utility.h"
 
 namespace hko{
 

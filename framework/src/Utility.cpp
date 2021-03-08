@@ -19,8 +19,17 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#include "hko/ecs/Component.h"
+#include <cmath>
+#include "framework/Utility.h"
 
-namespace hko{
-    Component::~Component() {}
+void hko::centerOrigin(sf::Sprite& sprite) {
+    sf::FloatRect bounds = sprite.getLocalBounds();
+    sprite.setOrigin(std::floor(bounds.left + bounds.width / 2.f),
+                     std::floor(bounds.top + bounds.height / 2.f));
+}
+
+void hko::centerOrigin(sf::Text& text) {
+    sf::FloatRect bounds = text.getLocalBounds();
+    text.setOrigin(std::floor(bounds.left + bounds.width / 2.f),
+                   std::floor(bounds.top + bounds.height / 2.f));
 }

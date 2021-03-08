@@ -19,7 +19,7 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#include "hko/gui/GuiNode.h"
+#include "framework/gui/GuiNode.h"
 
 namespace hko{
     GuiNode::GuiNode():

@@ -21,6 +21,16 @@ source distribution.
 
 #pragma once
 
-namespace hko{
+#include <SFML/System/Vector2.hpp>
 
+namespace hko{
+    class Transform{
+    public:
+        Transform();
+        ~Transform() = default;
+
+        void setPosition(const sf::Vector2f& pos);
+    private:
+        sf::Vector2f m_pos;
+    };
 }

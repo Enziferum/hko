@@ -19,48 +19,14 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-
-#pragma once
-
-#include "Component.h"
+#include "framework/ecs/Entity.h"
 
 namespace hko{
-    class EntityManager;
+    Entity::Entity() {
 
-    class Entity final{
-    public:
-        Entity();
-        //Entity(const Entity&);
-        ~Entity();
+    }
 
+    Entity::~Entity() {
 
-        template<typename T>
-        void addComponent(const T&);
-
-
-        template<typename T, typename ...Args>
-        void addComponent(Args&& ...);
-
-
-        template<typename T>
-        bool hasComponent() const;
-
-        template<typename T>
-        T& get_component();
-
-        template<typename T>
-        const T& get_component() const;
-    private:
-        EntityManager* m_manager;
-    };
-
-
-
-    class EntityManager{
-    public:
-
-    };
-
-    #include "Entity.inl"
-    #include "EntityManager.inl"
+    }
 }

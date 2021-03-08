@@ -23,8 +23,8 @@ source distribution.
 
 #include <unordered_map>
 #include <SFML/Graphics.hpp>
-#include "IStateMachine.h"
-#include "IState.h"
+#include "framework/IStateMachine.h"
+#include "framework/IState.h"
 
 namespace hko{
 

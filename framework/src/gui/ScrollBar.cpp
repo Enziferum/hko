@@ -19,7 +19,7 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#include "hko/gui/ScrollBar.h"
+#include "framework/gui/ScrollBar.h"
 
 namespace hko{
     ScrollBar::ScrollBar():

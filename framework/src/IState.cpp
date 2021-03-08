@@ -19,17 +19,17 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#pragma once
-
-#include "framework/ecs/System.h"
+#include "framework/IState.h"
 
 namespace hko{
-    class SpriteSystem: public System{
-    public:
-        explicit SpriteSystem();
 
-        void process(float dt) override;
-    private:
-        void on_addEntity(Entity) override;
-    };
+    IState::IState(IStateMachine& machine):
+        m_machine(machine),
+        m_window(machine.getWindow()) {
+
+    }
+
+    IState::~IState() {
+
+    }
 }

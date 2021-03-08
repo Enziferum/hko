@@ -26,7 +26,7 @@ source distribution.
 
 #include <SFML/Graphics.hpp>
 
-#include "INode.h"
+#include "framework/INode.h"
 #include "ResourceManager.h"
 
 

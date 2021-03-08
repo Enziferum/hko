@@ -19,17 +19,15 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#include <cmath>
-#include "hko/Utility.h"
+#pragma once
 
-void hko::centerOrigin(sf::Sprite& sprite) {
-    sf::FloatRect bounds = sprite.getLocalBounds();
-    sprite.setOrigin(std::floor(bounds.left + bounds.width / 2.f),
-                     std::floor(bounds.top + bounds.height / 2.f));
-}
+namespace hko{
+    class BuildingComponent{
+    public:
+        BuildingComponent();
+        ~BuildingComponent();
 
-void hko::centerOrigin(sf::Text& text) {
-    sf::FloatRect bounds = text.getLocalBounds();
-    text.setOrigin(std::floor(bounds.left + bounds.width / 2.f),
-                   std::floor(bounds.top + bounds.height / 2.f));
+
+    private:
+    };
 }

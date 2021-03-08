@@ -19,8 +19,8 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#include "hko/gui/Button.h"
-#include "hko/Utility.h"
+#include "framework/gui/Button.h"
+#include "framework/Utility.h"
 
 namespace hko{
     Button::Button()

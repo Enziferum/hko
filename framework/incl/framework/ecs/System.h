@@ -19,16 +19,35 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#include "hko/INode.h"
+#pragma once
+
+#include <vector>
+
+#include "Entity.h"
 
 namespace hko{
+    class System{
+    public:
+        System();
+        virtual ~System() = 0;
 
-    INode::INode() {
+        virtual void process(float dt) = 0;
+    protected:
+        std::vector<Entity> getEntities();
+        virtual void on_addEntity(Entity entity){}
 
-    }
+        template<typename T>
+        void requireComponent();
+    };
 
-    INode::~INode(){
+    class SystemManager{
+    public:
+        SystemManager();
+        ~SystemManager();
 
-    }
 
+    private:
+    };
+
+    #include "System.inl"
 }

@@ -19,12 +19,17 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
+//ecs //
+#include "hko/TransformComponent.h"
+#include "hko/Drawable.h"
+#include "hko/SpriteComponent.h"
+
 #include "hko/StrategyState.h"
 #include "hko/States.h"
 #include "hko/MainBuilding.h"
 
-#include "hko/gui/Button.h"
-#include "hko/gui/Label.h"
+#include "framework/gui/Button.h"
+#include "framework/gui/Label.h"
 
 namespace hko{
     StrategyState::StrategyState(IStateMachine& machine,
@@ -301,6 +306,12 @@ namespace hko{
 
 
     void StrategyState::setupScene() {
+
+        auto entity = m_scene.createEntity();
+        entity.addComponent<Transform>().setPosition(sf::Vector2f());
+        entity.addComponent<SpriteComponent>();
+        entity.addComponent<Drawable>();
+
 
     }
 

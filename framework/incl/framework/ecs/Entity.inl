@@ -19,17 +19,25 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#pragma once
+template<typename T>
+T& Entity::addComponent(const T &) {
 
-#include "framework/ecs/System.h"
+}
 
-namespace hko{
-    class SpriteSystem: public System{
-    public:
-        explicit SpriteSystem();
+template<typename T, typename... Args>
+T& Entity::addComponent(Args &&...) {
 
-        void process(float dt) override;
-    private:
-        void on_addEntity(Entity) override;
-    };
+}
+
+template<typename T>
+bool Entity::hasComponent() const {
+    return 0;
+}
+
+template<typename T>
+T& Entity::get_component() {
+}
+
+template<typename T>
+const T& Entity::get_component() const {
 }

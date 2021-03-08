@@ -19,33 +19,16 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-Entity::Entity() {
+#include "framework/INode.h"
 
-}
+namespace hko{
 
-Entity::~Entity() {
+    INode::INode() {
 
-}
+    }
 
-template<typename T>
-void Entity::addComponent(const T &) {
+    INode::~INode(){
 
-}
+    }
 
-template<typename T, typename... Args>
-void Entity::addComponent(Args &&...) {
-
-}
-
-template<typename T>
-bool Entity::hasComponent() const {
-    return 0;
-}
-
-template<typename T>
-T& Entity::get_component() {
-}
-
-template<typename T>
-const T& Entity::get_component() const {
 }

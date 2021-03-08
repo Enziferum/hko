@@ -19,17 +19,28 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#pragma once
-
-#include "framework/ecs/System.h"
+#include "hko/BuildingSystem.h"
+#include "hko/BuildingComponent.h"
 
 namespace hko{
-    class SpriteSystem: public System{
-    public:
-        explicit SpriteSystem();
 
-        void process(float dt) override;
-    private:
-        void on_addEntity(Entity) override;
-    };
+    BuildingSystem::BuildingSystem() {
+        requireComponent<BuildingComponent>();
+    }
+
+
+    void BuildingSystem::process(float dt) {
+        auto entities = getEntities();
+
+        for(auto& it: entities){
+            auto& building = it.get_component<BuildingComponent>();
+            //todo some logic on it
+        }
+
+    }
+
+    void BuildingSystem::on_addEntity(Entity entity) {
+        
+    }
+
 }

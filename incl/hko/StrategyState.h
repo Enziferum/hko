@@ -23,8 +23,8 @@ source distribution.
 
 #include <vector>
 
-#include "IState.h"
-#include "INode.h"
+#include "framework/IState.h"
+#include "framework/INode.h"
 
 #include "ResourceManager.h"
 #include "Configuration.h"
@@ -34,12 +34,12 @@ source distribution.
 
 #include "Ai.h"
 
-#include "gui/Gui.h"
-#include "gui/Label.h"
+#include "framework/gui/Gui.h"
+#include "framework/gui/Label.h"
 
 
 
-#include "ecs/Scene.h"
+#include "framework/ecs/Scene.h"
 
 namespace hko{
 

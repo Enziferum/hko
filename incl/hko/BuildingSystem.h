@@ -19,8 +19,19 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#include "hko/ecs/Entity.h"
+#pragma once
+
+#include "framework/ecs/System.h"
 
 namespace hko{
 
+    class BuildingSystem: public System{
+    public:
+        explicit BuildingSystem();
+        ~BuildingSystem() override = default;
+
+        void process(float dt)override;
+    private:
+        void on_addEntity(Entity)override;
+    };
 }

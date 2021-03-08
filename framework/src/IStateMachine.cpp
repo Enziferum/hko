@@ -19,35 +19,26 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-
-#pragma once
-
-#include <SFML/Graphics.hpp>
-
-#include "Entity.h"
-#include "Component.h"
-#include "System.h"
+#include "framework/IStateMachine.h"
 
 namespace hko{
-    class Scene: public sf::Drawable {
-    public:
-        Scene();
-        Scene(const Scene&) = delete;
-        Scene(const Scene&&) = delete;
-        Scene& operator=(const Scene&) = delete;
-        Scene& operator=(const Scene&&) = delete;
-        ~Scene();
 
-        Entity createEntity();
+    IStateMachine::IStateMachine(const sf::Vector2u& size, const std::string& name):
+            m_window(sf::VideoMode(size.x, size.y), name){
 
-    private:
-        void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
-    private:
-        //managers
-        ComponentManager m_componentManager;
-        EntityManager m_entityManager;
-        SystemManager m_systemManager;
-    };
+    }
+
+    IStateMachine::~IStateMachine() {
+    }
+
+
+    void IStateMachine::pushState(const int& idx) {
+        m_currentState = idx;
+    }
+
+    sf::RenderWindow &IStateMachine::getWindow() {
+        return m_window;
+    }
 
 
 }

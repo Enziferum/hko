@@ -19,26 +19,18 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#include "hko/IStateMachine.h"
+#include "framework/ecs/Scene.h"
 
 namespace hko{
+    Scene::Scene() {}
 
-    IStateMachine::IStateMachine(const sf::Vector2u& size, const std::string& name):
-            m_window(sf::VideoMode(size.x, size.y), name){
+    Scene::~Scene() {}
+
+    void Scene::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 
     }
 
-    IStateMachine::~IStateMachine() {
+    Entity Scene::createEntity() {
+        return Entity();
     }
-
-
-    void IStateMachine::pushState(const int& idx) {
-        m_currentState = idx;
-    }
-
-    sf::RenderWindow &IStateMachine::getWindow() {
-        return m_window;
-    }
-
-
 }

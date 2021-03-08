@@ -24,7 +24,7 @@ source distribution.
 #include <memory>
 #include <SFML/Graphics.hpp>
 
-#include "INode.h"
+#include "framework/INode.h"
 
 
 namespace hko{
