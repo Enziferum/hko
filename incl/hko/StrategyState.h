@@ -37,6 +37,10 @@ source distribution.
 #include "gui/Gui.h"
 #include "gui/Label.h"
 
+
+
+#include "ecs/Scene.h"
+
 namespace hko{
 
     class StrategyState: public IState{
@@ -56,6 +60,8 @@ namespace hko{
         void setupGame();
         void setupMainGui();
 
+        void setupScene();
+
         //main building canvas
         void setup_build_gui();
 
@@ -68,6 +74,9 @@ namespace hko{
         Configuration& m_configuration;
         ResourceManager<sf::Texture> m_textures;
         ResourceManager<sf::Font> m_fonts;
+
+        //will all stuff here
+        Scene m_scene;
 
         Map m_map;
         Camera m_camera;

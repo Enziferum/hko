@@ -19,12 +19,8 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#pragma once
+#include "hko/ecs/Component.h"
 
 namespace hko{
-    class IComponent{
-    public:
-        virtual ~IComponent() = 0;
-    protected:
-    };
+    Component::~Component() {}
 }

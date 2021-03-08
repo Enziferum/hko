@@ -294,8 +294,13 @@ namespace hko{
     }
 
 
-
     void StrategyState::process_ai_decision(const AiDecision &decision) {
+
+    }
+
+
+
+    void StrategyState::setupScene() {
 
     }
 

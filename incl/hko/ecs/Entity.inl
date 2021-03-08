@@ -19,8 +19,33 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#include "hko/ecs/IComponent.h"
+Entity::Entity() {
 
-namespace hko{
-    IComponent::~IComponent() {}
+}
+
+Entity::~Entity() {
+
+}
+
+template<typename T>
+void Entity::addComponent(const T &) {
+
+}
+
+template<typename T, typename... Args>
+void Entity::addComponent(Args &&...) {
+
+}
+
+template<typename T>
+bool Entity::hasComponent() const {
+    return 0;
+}
+
+template<typename T>
+T& Entity::get_component() {
+}
+
+template<typename T>
+const T& Entity::get_component() const {
 }
