@@ -21,16 +21,46 @@ source distribution.
 
 #pragma once
 
+#include <memory>
+
 namespace hko{
 
-    // here info about player
-    class Player{
-    public:
-        Player();
-        ~Player();
+    //base class for Computer moves
+    // Will be 1. Easy / Medium / Hard
+    // Just now only Easy
 
-
-    private:
-
+    enum class AiTypes{
+        easy, medium, hard
     };
+
+    //after update get ai moves
+    struct AiDecision{
+        void clear();
+    };
+
+    class IAi{
+    public:
+        using Ptr = std::shared_ptr<IAi>;
+    public:
+        IAi();
+        virtual ~IAi() = 0;
+
+        //base algo of updating
+        virtual void update(float dt) = 0;
+        const AiDecision& get_decision() const {
+            return m_decision;
+        }
+    protected:
+        AiDecision m_decision;
+    };
+
+    class EasyAi: public IAi {
+    public:
+        EasyAi();
+        ~EasyAi();
+
+        virtual void update(float dt) override;
+    private:
+    };
+
 }

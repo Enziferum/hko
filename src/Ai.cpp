@@ -19,18 +19,38 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#pragma once
+#include "hko/Ai.h"
 
 namespace hko{
 
-    // here info about player
-    class Player{
-    public:
-        Player();
-        ~Player();
+    void AiDecision::clear() {
+
+    }
+
+    IAi::IAi() {
+
+    }
+
+    IAi::~IAi() {
+
+    }
 
 
-    private:
+    EasyAi::EasyAi() {
 
-    };
+    }
+
+    EasyAi::~EasyAi() {
+
+    }
+
+    void EasyAi::update(float dt) {
+        // don't have strategy for whole game
+        // create it only while updating
+        m_decision.clear();
+
+        //todo fill decision
+    }
+
+
 }
