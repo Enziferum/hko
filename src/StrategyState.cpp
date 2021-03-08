@@ -1,6 +1,23 @@
-//
-// Created by support on 06.03.2021.
-//
+/*********************************************************************
+(c) Alex Raag 2021
+https://github.com/Enziferum
+hko - Zlib license.
+This software is provided 'as-is', without any express or
+implied warranty. In no event will the authors be held
+liable for any damages arising from the use of this software.
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute
+it freely, subject to the following restrictions:
+1. The origin of this software must not be misrepresented;
+you must not claim that you wrote the original software.
+If you use this software in a product, an acknowledgment
+in the product documentation would be appreciated but
+is not required.
+2. Altered source versions must be plainly marked as such,
+and must not be misrepresented as being the original software.
+3. This notice may not be removed or altered from any
+source distribution.
+*********************************************************************/
 
 #include "hko/StrategyState.h"
 #include "hko/States.h"
@@ -25,6 +42,7 @@ namespace hko{
 
     void StrategyState::setup() {
 
+        //todo move to configuration file
         m_textures.loadFile("res/builds/castle_4.png", "castle");
         m_textures.loadFile("res/builds/castle_barracks.png",
                             "castle_barracks");
@@ -32,6 +50,7 @@ namespace hko{
         m_textures.loadFile("res/builds/Castle_Archery.png",
                             "castle_archery");
         m_fonts.loadFile("res/gui/fonts/arcade.ttf", "gui_font");
+
 
         if(!m_map.loadMap("res/maps/1.map")){
             //todo log about error
@@ -45,24 +64,28 @@ namespace hko{
     }
 
     void StrategyState::setupGame() {
-        MainBuilding::Ptr castleMain = std::make_shared<MainBuilding>();
-        MainBuilding::Ptr necroMain = std::make_shared<MainBuilding>();
-
-        auto size = m_window.getSize();
         const float offset = 80;
 
+
+        MainBuilding::Ptr castleMain = std::make_shared<MainBuilding>();
+        MainBuilding::Ptr golbinMain = std::make_shared<MainBuilding>();
+
+        auto size = m_window.getSize();
+
         castleMain->setTexture(m_textures.get("castle"));
-        necroMain->setTexture(m_textures.get("castle"));
+        golbinMain->setTexture(m_textures.get("castle"));
 
         castleMain->setPosition(sf::Vector2f(offset, size.y / 2 ));
-        necroMain->setPosition(sf::Vector2f(size.x - offset,
-                                            size.y / 2));
+        golbinMain->setPosition(sf::Vector2f(1200,
+                                            800));
 
         castleMain -> setScale(sf::Vector2f());
-        necroMain -> setScale(sf::Vector2f());
+        golbinMain -> setScale(sf::Vector2f());
 
         m_buildings.push_back(castleMain);
-        m_buildings.push_back(necroMain);
+        m_buildings.push_back(golbinMain);
+
+        m_ai = std::make_shared<EasyAi>();
     }
 
     void StrategyState::handleEvents(const sf::Event& event) {
@@ -74,6 +97,10 @@ namespace hko{
             //todo convert to world coords
                 sf::Vector2f mousePos(event.mouseButton.x,
                                       event.mouseButton.y);
+
+                mousePos = m_window.mapPixelToCoords(sf::Vector2i(event.mouseButton.x,
+                                                       event.mouseButton.y),
+                                          m_camera.getView());
 
                 //todo check main building is player
                 if(!m_open_building){
@@ -117,6 +144,11 @@ namespace hko{
     }
 
     void StrategyState::update(float dt) {
+        //noting doing just now
+        m_ai->update(dt);
+        process_ai_decision(m_ai -> get_decision());
+
+
         m_camera.update(dt);
         if(m_open_building)
             m_build_gui.update(dt);
@@ -128,15 +160,20 @@ namespace hko{
 
     void StrategyState::render() {
         sf::View& cameraView = m_camera.getView();
-        //m_window.setView(cameraView);
+        auto view = m_window.getView();
+
+        m_window.setView(cameraView);
         m_window.draw(m_map);
 
+        m_window.setView(view);
         if(m_build_mode)
             m_window.draw(build_grid);
 
+        m_window.setView(cameraView);
         for(const auto& it:m_buildings)
             m_window.draw(*it);
 
+        m_window.setView(view);
         //draw building stuff
         if(m_open_building) {
             m_window.draw(m_gui_background);
@@ -254,6 +291,12 @@ namespace hko{
 
             build_grid.intersects_pos = sf::Vector2f();
         }
+    }
+
+
+
+    void StrategyState::process_ai_decision(const AiDecision &decision) {
+
     }
 
 }

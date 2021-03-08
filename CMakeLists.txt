@@ -12,3 +12,5 @@ file(GLOB_RECURSE SRC src/*.cpp)
 add_executable(${PROJECT_NAME} ${SRC})
 target_link_libraries(${PROJECT_NAME}
         sfml-graphics sfml-audio sfml-system sfml-window)
+
+#todo set output folder

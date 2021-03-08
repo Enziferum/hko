@@ -1,8 +1,26 @@
-//
-// Created by support on 06.03.2021.
-//
+/*********************************************************************
+(c) Alex Raag 2021
+https://github.com/Enziferum
+hko - Zlib license.
+This software is provided 'as-is', without any express or
+implied warranty. In no event will the authors be held
+liable for any damages arising from the use of this software.
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute
+it freely, subject to the following restrictions:
+1. The origin of this software must not be misrepresented;
+you must not claim that you wrote the original software.
+If you use this software in a product, an acknowledgment
+in the product documentation would be appreciated but
+is not required.
+2. Altered source versions must be plainly marked as such,
+and must not be misrepresented as being the original software.
+3. This notice may not be removed or altered from any
+source distribution.
+*********************************************************************/
 
 #pragma once
+
 #include <vector>
 
 #include "IState.h"
@@ -14,10 +32,13 @@
 #include "Map.h"
 #include "Building.h"
 
+#include "Ai.h"
+
 #include "gui/Gui.h"
 #include "gui/Label.h"
 
 namespace hko{
+
     class StrategyState: public IState{
     public:
         using Ptr = std::shared_ptr<StrategyState>;
@@ -38,9 +59,11 @@ namespace hko{
         //main building canvas
         void setup_build_gui();
 
-        //build logic
+        //build logic just now 08.03 - not working
         void before_build();
         void try_build(const sf::Vector2f& pos);
+
+        void process_ai_decision(const AiDecision& decision);
     private:
         Configuration& m_configuration;
         ResourceManager<sf::Texture> m_textures;
@@ -65,6 +88,9 @@ namespace hko{
         Label::Ptr coin_label;
         unsigned int m_coins = 400;
 
+        IAi::Ptr m_ai;
+
+        //todo outside
         struct : public sf::Drawable{
             std::vector<sf::CircleShape> cells;
             sf::Color grid_color = sf::Color(150, 250, 100,
@@ -105,9 +131,9 @@ namespace hko{
                 int idx = 0;
                 for(int it = 0; it < cell_value / row_sz; ++it){
                     for(int ij = 0; ij < cell_value / row_sz; ++ij){
-                        sf::CircleShape cell(64.f, 6);
-                        //cell.setPosition(left.x + it * 64, left.y+ ij * 64);
-                        cell.setPosition(left);
+                        sf::CircleShape cell(32.f, 6);
+                        cell.setPosition(left.x + it * 64, left.y+ ij * 64);
+                        //cell.setPosition(left);
                         cell.setFillColor(grid_color);
                         cell.setOutlineColor(sf::Color::Black);
                         cell.setOutlineThickness(1.f);

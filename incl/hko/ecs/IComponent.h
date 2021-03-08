@@ -22,15 +22,9 @@ source distribution.
 #pragma once
 
 namespace hko{
-
-    // here info about player
-    class Player{
+    class IComponent{
     public:
-        Player();
-        ~Player();
-
-
-    private:
-
+        virtual ~IComponent() = 0;
+    protected:
     };
 }

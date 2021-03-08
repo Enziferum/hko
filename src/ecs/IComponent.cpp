@@ -19,18 +19,8 @@ and must not be misrepresented as being the original software.
 source distribution.
 *********************************************************************/
 
-#pragma once
+#include "hko/ecs/IComponent.h"
 
 namespace hko{
-
-    // here info about player
-    class Player{
-    public:
-        Player();
-        ~Player();
-
-
-    private:
-
-    };
+    IComponent::~IComponent() {}
 }
